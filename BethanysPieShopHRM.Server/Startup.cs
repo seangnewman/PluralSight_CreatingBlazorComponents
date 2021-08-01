@@ -1,4 +1,3 @@
-using System;
 using System.Net.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,27 +24,16 @@ namespace BethanysPieShopHRM.Server
             services.AddRazorPages();
             services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
             
-            //services.AddScoped<HttpClient>(s =>
-            //{
-            //    var client = new HttpClient { BaseAddress = new System.Uri("https://localhost:44340/") };
-            //    //var client = new HttpClient();
-            //    //var client = new HttpClient { BaseAddress = new System.Uri("https://bethanyspieshophrmapi.azurewebsites.net/") }; 
-            //    return client;
-            //});
+            services.AddScoped<HttpClient>(s =>
+            {
+                var client = new HttpClient { BaseAddress = new System.Uri("https://localhost:44340/") }; 
+                return client;
+            });
 
-            //services.AddScoped<IEmployeeDataService, MockEmployeeDataService>();
-            services.AddHttpClient<IEmployeeDataService, EmployeeDataService>(client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:44340/");
-            });
-            services.AddHttpClient<ICountryDataService, CountryDataService>(client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:44340/");
-            });
-            services.AddHttpClient<IJobCategoryDataService, JobCategoryDataService>(client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:44340/");
-            });
+            services.AddScoped<IEmployeeDataService, EmployeeDataService>();
+            services.AddScoped<ICountryDataService, CountryDataService>();
+            services.AddScoped<IJobCategoryDataService, JobCategoryDataService>();
+            services.AddScoped<IBenefitDataService, BenefitDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

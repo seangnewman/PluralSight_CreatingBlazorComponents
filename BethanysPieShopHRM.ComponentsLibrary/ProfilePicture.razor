@@ -7,8 +7,9 @@
     <div class="profile-picture">
         <img class="img-responsive @CssClass account-photo"
              src="images/profilePicture.jpg"
-             @onclick="PictureClick" />
-          <!--   @onclick=@(e => CssClass = CssClass == "circle" ? null : "circle") /> -->
+             @onclick="@(e => CssClass = CssClass == "circle" ? null : "circle")" />
         <div class="mt-2 text-center">@ChildContent</div>
     </div>
 </div>
+
+

@@ -137,5 +137,25 @@ namespace BethanysPieShopHRM.Server.Services
         {
             throw new NotImplementedException();
         }
+
+        Task<IEnumerable<EmployeeModel>> IEmployeeDataService.GetAllEmployees()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<EmployeeModel> IEmployeeDataService.GetEmployeeDetails(int employeeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<EmployeeModel> AddEmployee(EmployeeModel employee)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateEmployee(EmployeeModel employee)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
