@@ -1,4 +1,5 @@
-﻿@inherits BenefitSelectorBase
+﻿@using BethanysPieShopHRM.Shared
+@inherits BenefitSelectorBase
 
 @if (Benefits == null)
 {
@@ -8,39 +9,35 @@ else
 {
 <div class="row">
     <div class="col-md-8">
-        <table class="table table-sm">
-            <tr>
-                <th class="w-auto"></th>
+        <TableTemplate Items="Benefits" IsSmall="true" 
+                       TItem="BenefitModel" Context="benefit">
+
+            <TableHeader>
                 <th class="w-auto">Benefit</th>
                 <th class="w-25">Start date</th>
                 <th class="w-25">End date</th>
-            </tr>
-            @foreach (var benefit in Benefits)
-            {
-                <tr @key="benefit">
-                    <td>@benefit.Description</td>
+            </TableHeader>
+            <RowTemplate>
+                <td>
+                    <input type="checkbox" checked="@benefit.Selected"
+                           @onchange="e => CheckBoxChanged(e, benefit)" />
+                </td>
+                <td>@benefit.Description</td>
 
+                @if (benefit.Selected)
+                {
+                    <td>@benefit.StartDate</td>
                     <td>
-                        
-                        <input type="checkbox" checked="@benefit.Selected"   @onchange="e => CheckBoxChanged(e, benefit)" />
-                        
+                        <DateField @bind-Date="benefit.EndDate" />
                     </td>
-
-                    @if (benefit.Selected)
-                    {
-                        <td>@benefit.StartDate</td>
-                        <td>
-                            <DateField @bind-Date="benefit.EndDate"></DateField>
-                        </td>
-                    }
-                    else
-                    {
-                        <td></td>
-                        <td></td>
-                    }
-                </tr>
-            }
-        </table>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                }
+            </RowTemplate>
+        </TableTemplate>
     </div>
     <div class="col-md-4 mt-1">
         <button class="btn btn-primary" disabled="@SaveButtonDisabled"

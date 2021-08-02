@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNetCore.Components.Web
-
-
+﻿
 <input type="date" value="@Date?.ToString(dateFormatString)"
        format-value="@dateFormatString" @onchange="OnDateChanged" />
 
@@ -9,7 +7,8 @@
 </button>
 
 @code {
-    private string dateFormatString = "yyyy-MM-dd";
+
+    private static string dateFormatString = "yyyy-MM-dd";
     private DateTime? origDate;
 
     [Parameter]

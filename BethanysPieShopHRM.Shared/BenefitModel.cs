@@ -1,9 +1,26 @@
 ﻿using System;
+using BethanysPieShopHRM.ComponentsLibrary;
 
 namespace BethanysPieShopHRM.Shared
 {
-    public class BenefitModel
+    public class BenefitModel: ITableModel
     {
+        public bool HighLightRow
+        {
+            get
+            {
+                return Premium;
+            }
+        }
+
+        public bool ShowChildTemplate
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         public int BenefitId { get; set; }
 
         public bool Selected { get; set; }

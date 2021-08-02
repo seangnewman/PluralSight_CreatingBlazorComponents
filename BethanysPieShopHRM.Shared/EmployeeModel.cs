@@ -1,12 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using BethanysPieShopHRM.ComponentsLibrary;
 
 namespace BethanysPieShopHRM.Shared
 {
-    public class EmployeeModel
+    public class EmployeeModel: ITableModel
     {
+        public bool HighLightRow
+        {
+            get
+            {
+                return HasPremiumBenefits;
+            }
+        }
+
+        public bool ShowChildTemplate
+        {
+            get
+            {
+                return ShowBenefits;
+            }
+        }
+
         public int EmployeeId { get; set; }
         [Required]
         [StringLength(50, ErrorMessage = "First name is too long.")]
